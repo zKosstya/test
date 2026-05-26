@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Гитары — Акустические</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero__overlay">
+      <nav class="nav">
+        <a class="logo" href="#">🎸 Gitars</a>
+        <a class="nav__link" href="#about">О разделе</a>
+        <a class="nav__link" href="#gallery">Картинки</a>
+        <a class="nav__link" href="#tips">Советы</a>
+      </nav>
+
+      <div class="hero__content">
+        <h1>Акустические гитары</h1>
+        <p>Короткий гид по выбору и базовому уходу.</p>
+        <a class="btn" href="#tips">Перейти к советам</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="card">
+      <h2>Что важно знать</h2>
+      <ul>
+        <li><b>Размер корпуса</b>: влияет на громкость и тембр.</li>
+        <li><b>Материал</b>: дерево/ламинат — по ощущениям и цене.</li>
+        <li><b>Струны</b>: подбирают под стиль игры.</li>
+      </ul>
+    </section>
+
+    <section id="gallery" class="card">
+      <h2>Вдохновение</h2>
+      <div class="grid">
+        <figure class="img-card">
+          <img
+            src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=60"
+            alt="Акустическая гитара"
+            loading="lazy"
+          />
+          <figcaption>Классический внешний вид</figcaption>
+        </figure>
+
+        <figure class="img-card">
+          <img
+            src="https://images.unsplash.com/photo-1520523839897-bf0b0f4e5f7a?auto=format&fit=crop&w=800&q=60"
+            alt="Гриф гитары"
+            loading="lazy"
+          />
+          <figcaption>Удобный гриф</figcaption>
+        </figure>
+
+        <figure class="img-card">
+          <img
+            src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=60"
+            alt="Музыка и сцена"
+            loading="lazy"
+          />
+          <figcaption>Акустика для живого звучания</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="tips" class="card">
+      <h2>Мини-советы новичкам</h2>
+      <div class="two">
+        <div class="pill">
+          <h3>Тюнинг</h3>
+          <p>После покупки проверь строй и настрой часто в первые недели.</p>
+        </div>
+        <div class="pill">
+          <h3>Уход</h3>
+          <p>Вытирайте струны после игры, чтобы меньше ржавели.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Гитары. Небольшой сайт для GitHub Pages.</p>
+    </footer>
+  </main>
+</body>
+</html>
