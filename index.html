@@ -3,115 +3,451 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Мой сайт</title>
-  <meta name="description" content="Простой сайт на GitHub Pages" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Гитары — минимализм</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --text:#e8eefc;
+      --muted:rgba(232,238,252,.72);
+      --accent:#7c5cff; /* выбранный цвет */
+      --border:rgba(232,238,252,.12);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius-sm:14px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(900px 520px at 20% -10%, rgba(124,92,255,.28), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(124,92,255,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.78), rgba(11,18,32,.35));
+      border-bottom:1px solid rgba(232,238,252,.06);
+    }
+    .head-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:720;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.25));
+      border:1px solid rgba(232,238,252,.14);
+      box-shadow: 0 10px 30px rgba(124,92,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-30% -40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+      transform: rotate(25deg);
+      animation: sheen 4.5s ease-in-out infinite;
+    }
+    @keyframes sheen{
+      0%, 55% { transform: translateX(-40%) rotate(25deg); opacity:.0}
+      70% { opacity:.55}
+      100% { transform: translateX(45%) rotate(25deg); opacity:0}
+    }
+    nav{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:14px;
+      color:var(--muted);
+    }
+    nav a{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color:rgba(232,238,252,.14);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Hero */
+    .hero{
+      padding:46px 0 26px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:30px}
+    }
+
+    .hero-card{
+      background: rgba(15,27,51,.55);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:26px 22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      width:420px; height:420px;
+      right:-220px; top:-260px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.35), transparent 60%);
+      pointer-events:none;
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(124,92,255,.15);
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:44px;
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    @media (max-width:520px){
+      h1{font-size:36px}
+    }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      max-width:60ch;
+      font-size:16px;
+    }
+
+    .actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      height:44px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(232,238,252,.14);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      transition:.2s ease;
+      font-weight:650;
+      font-size:14px;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); border-color:rgba(232,238,252,.24)}
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.25));
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 14px 40px rgba(124,92,255,.18);
+    }
+
+    .hero-side{
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .stat{
+      background: rgba(15,27,51,.55);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+    .stat .top{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+      margin-bottom:10px;
+    }
+    .stat h3{
+      margin:0;
+      font-size:15px;
+      color:var(--muted);
+      font-weight:650;
+    }
+    .badge{
+      font-size:12px;
+      color:rgba(232,238,252,.9);
+      border:1px solid rgba(232,238,252,.14);
+      background: rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .value{
+      font-size:28px;
+      font-weight:820;
+      letter-spacing:-.4px;
+      margin:0;
+    }
+    .hint{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Sections */
+    section{margin-top:22px}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin:30px 0 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 620px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .card{
+      background: rgba(15,27,51,.55);
+      border:1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding:16px;
+      min-height:140px;
+      position:relative;
+      overflow:hidden;
+      transition:.2s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(232,238,252,.22);
+      background: rgba(15,27,51,.68);
+    }
+    .card .icon{
+      width:38px; height:38px;
+      border-radius:14px;
+      border:1px solid rgba(232,238,252,.14);
+      background: rgba(124,92,255,.10);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(232,238,252,.95);
+      margin-bottom:10px;
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size:15px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:13.5px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top:34px;
+      padding:24px 0 0;
+      border-top:1px solid rgba(232,238,252,.08);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .footer-links{display:flex; gap:12px; flex-wrap:wrap}
+    .footer-links a{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+    .footer-links a:hover{
+      border-color:rgba(232,238,252,.14);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    /* Smooth scroll */
+    html{scroll-behavior:smooth}
+    /* Optional reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">MySite</a>
-      <nav class="nav">
-        <a href="#about">О нас</a>
-        <a href="#services">Услуги</a>
-        <a href="#contact">Контакты</a>
+  <header>
+    <div class="head-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Гитары</div>
+      </div>
+      <nav aria-label="Навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#types">Типы</a>
+        <a href="#faq">Подбор</a>
+        <a href="#contacts">Контакты</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Делаем красиво и быстро</h1>
-          <p>Стартовый шаблон для статического сайта: минимум лишнего, максимум удобства.</p>
-          <div class="buttons">
-            <a class="btn btn-primary" href="#contact">Связаться</a>
-            <a class="btn btn-ghost" href="#about">Узнать больше</a>
-          </div>
-        </div>
-        <div class="hero-card" aria-hidden="true">
-          <div class="stat">
-            <div class="stat-number">99%</div>
-            <div class="stat-label">скорости</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">поддержка</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">0</div>
-            <div class="stat-label">лишнего</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <h2>О нас</h2>
+  <main class="wrap">
+    <div class="hero">
+      <div class="hero-card">
+        <div class="kicker"><span class="dot"></span> Минимализм • только нужное</div>
+        <h1>Гитары — найдите свой звук</h1>
         <p class="lead">
-          Мы делаем сайты, лендинги и простые интерфейсы. Этот шаблон — хороший “скелет”,
-          чтобы быстро запустить Pages без лишних зависимостей.
+          Лаконичный каталог: акустика, электро и классика.
+          Выберите стиль игры — мы подскажем, что подойдет лучше.
         </p>
-      </div>
-    </section>
-
-    <section id="services" class="section section-alt">
-      <div class="container">
-        <h2>Услуги</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>Лендинги</h3>
-            <p>Структура, верстка, адаптив, базовая анимация.</p>
-          </article>
-          <article class="card">
-            <h3>Статические сайты</h3>
-            <p>Просто и надежно: GitHub Pages, SSG, без серверной части.</p>
-          </article>
-          <article class="card">
-            <h3>Поддержка</h3>
-            <p>Доработки, исправления, улучшения производительности.</p>
-          </article>
+        <div class="actions">
+          <a class="btn btn-primary" href="#catalog">Перейти к каталогу</a>
+          <a class="btn" href="#faq">Помочь с выбором</a>
         </div>
       </div>
-    </section>
 
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Контакты</h2>
-        <form class="form" onsubmit="event.preventDefault(); alert('Сообщение отправлено (демо)');">
-          <label>
-            Имя
-            <input type="text" name="name" required placeholder="Ваше имя" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required placeholder="name@example.com" />
-          </label>
-          <label>
-            Сообщение
-            <textarea name="message" rows="5" required placeholder="Напишите, что нужно"></textarea>
-          </label>
-          <button class="btn btn-primary" type="submit">Отправить</button>
-        </form>
+      <div class="hero-side" aria-label="Короткие преимущества">
+        <div class="stat">
+          <div class="top">
+            <h3>Подбор по задаче</h3>
+            <span class="badge">3 шага</span>
+          </div>
+          <p class="value">Быстро</p>
+          <p class="hint">Напишите стиль — соберем подходящие варианты.</p>
+        </div>
+        <div class="stat">
+          <div class="top">
+            <h3>Понятно по сути</h3>
+            <span class="badge">Без лишнего</span>
+          </div>
+          <p class="value">Мини</p>
+          <p class="hint">Короткие карточки, акцент на характеристиках.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="catalog">
+      <div class="section-title">
+        <h2>Каталог</h2>
+        <p>3 направления: выберите то, что ближе.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">🎸</div>
+          <h3>Акустические</h3>
+          <p>Для живого звучания и тренировок без сложной настройки.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">⚡</div>
+          <h3>Электрогитары</h3>
+          <p>Для рока, металла и экспериментов с эффектами.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">🎼</div>
+          <h3>Классические</h3>
+          <p>Мягкий строй и комфорт для обучения и пальцевой техники.</p>
+        </article>
       </div>
     </section>
+
+    <section id="types">
+      <div class="section-title">
+        <h2>Типы и отличия</h2>
+        <p>Суть в двух строках.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">🪵</div>
+          <h3>Акустика</h3>
+          <p>Корпус усиливает звук: идеальна для двора, кухни и репетиций.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">🎚️</div>
+          <h3>Электро</h3>
+          <p>Питание/усилитель + звук берут подключение и звукосниматели.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">🧠</div>
+          <h3>Классика</h3>
+          <p>Нейлоновые струны и техника для основы: арпеджио и мелодии.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-title">
+        <h2>Подбор гитары</h2>
+        <p>Ответьте себе на вопросы.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">1</div>
+          <h3>Вы для дома или сцены?</h3>
+          <p>Дома чаще выбирают акустику/классику; сцена — электрогитары.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">2</div>
+          <h3>Какая музыка ближе?</h3>
+          <p>Рок/метал — электро. Пальцы/классика — классическая.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">3</div>
+          <h3>Уровень и комфорт?</h3>
+          <p>Если учитесь — начните с удобного набора и понятной посадки.</p>
+        </article>
+      </div>
+
+      <div class="actions" style="margin-top:16px">
+        <a class="btn btn-primary" href="#contacts">Написать нам</a>
+        <a class="btn" href="#catalog">Смотреть варианты</a>
+      </div>
+    </section>
+
+    <footer id="contacts">
+      <div>
+        <strong style="color:var(--text);">Гитары</strong><br/>
+        Минимальный сайт для вдохновения и выбора.
+      </div>
+      <div class="footer-links" aria-label="Ссылки">
+        <a href="#catalog">Каталог</a>
+        <a href="#types">Типы</a>
+        <a href="#faq">Подбор</a>
+      </div>
+    </footer>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> MySite</span>
-      <a href="#" aria-label="Наверх" class="to-top">Наверх ↑</a>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.querySelector('.to-top').addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
 </body>
 </html>
