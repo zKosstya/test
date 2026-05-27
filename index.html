@@ -1,453 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Гитары — минимализм</title>
-  <style>
-    :root{
-      --bg:#0b1220;
-      --panel:#0f1b33;
-      --text:#e8eefc;
-      --muted:rgba(232,238,252,.72);
-      --accent:#7c5cff; /* выбранный цвет */
-      --border:rgba(232,238,252,.12);
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
-      --radius:18px;
-      --radius-sm:14px;
-      --max:1100px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мир гитар</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      background:
-        radial-gradient(900px 520px at 20% -10%, rgba(124,92,255,.28), transparent 60%),
-        radial-gradient(900px 520px at 90% 10%, rgba(124,92,255,.18), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.5;
-    }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
+        header h1 {
+            margin: 0;
+        }
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,18,32,.78), rgba(11,18,32,.35));
-      border-bottom:1px solid rgba(232,238,252,.06);
-    }
-    .head-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:16px 18px;
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight:720;
-      letter-spacing:.2px;
-    }
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.25));
-      border:1px solid rgba(232,238,252,.14);
-      box-shadow: 0 10px 30px rgba(124,92,255,.18);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-30% -40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
-      transform: rotate(25deg);
-      animation: sheen 4.5s ease-in-out infinite;
-    }
-    @keyframes sheen{
-      0%, 55% { transform: translateX(-40%) rotate(25deg); opacity:.0}
-      70% { opacity:.55}
-      100% { transform: translateX(45%) rotate(25deg); opacity:0}
-    }
-    nav{
-      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
-      font-size:14px;
-      color:var(--muted);
-    }
-    nav a{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition:.2s ease;
-    }
-    nav a:hover{
-      color:var(--text);
-      border-color:rgba(232,238,252,.14);
-      background: rgba(255,255,255,.03);
-    }
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+        }
 
-    /* Hero */
-    .hero{
-      padding:46px 0 26px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:start;
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; padding-top:30px}
-    }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
 
-    .hero-card{
-      background: rgba(15,27,51,.55);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:26px 22px;
-      overflow:hidden;
-      position:relative;
-    }
-    .hero-card:before{
-      content:"";
-      position:absolute;
-      width:420px; height:420px;
-      right:-220px; top:-260px;
-      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.35), transparent 60%);
-      pointer-events:none;
-    }
+        nav a:hover {
+            background-color: #555;
+        }
 
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:10px;
-    }
-    .dot{
-      width:9px; height:9px; border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(124,92,255,.15);
-    }
-    h1{
-      margin:0 0 10px;
-      font-size:44px;
-      line-height:1.08;
-      letter-spacing:-.6px;
-    }
-    @media (max-width:520px){
-      h1{font-size:36px}
-    }
-    .lead{
-      margin:0 0 18px;
-      color:var(--muted);
-      max-width:60ch;
-      font-size:16px;
-    }
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-    .actions{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top:16px;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      height:44px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(232,238,252,.14);
-      background: rgba(255,255,255,.03);
-      color:var(--text);
-      transition:.2s ease;
-      font-weight:650;
-      font-size:14px;
-      cursor:pointer;
-    }
-    .btn:hover{transform: translateY(-1px); border-color:rgba(232,238,252,.24)}
-    .btn-primary{
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.25));
-      border-color: rgba(124,92,255,.55);
-      box-shadow: 0 14px 40px rgba(124,92,255,.18);
-    }
+        h2 {
+            color: #222;
+            margin-top: 0;
+        }
 
-    .hero-side{
-      display:flex; flex-direction:column; gap:14px;
-    }
-    .stat{
-      background: rgba(15,27,51,.55);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.18);
-    }
-    .stat .top{
-      display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
-      margin-bottom:10px;
-    }
-    .stat h3{
-      margin:0;
-      font-size:15px;
-      color:var(--muted);
-      font-weight:650;
-    }
-    .badge{
-      font-size:12px;
-      color:rgba(232,238,252,.9);
-      border:1px solid rgba(232,238,252,.14);
-      background: rgba(255,255,255,.03);
-      padding:8px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-    .value{
-      font-size:28px;
-      font-weight:820;
-      letter-spacing:-.4px;
-      margin:0;
-    }
-    .hint{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:13px;
-    }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
 
-    /* Sections */
-    section{margin-top:22px}
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-      margin:30px 0 14px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .section-title p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-    }
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: repeat(2, 1fr)}
-    }
-    @media (max-width: 620px){
-      .grid{grid-template-columns: 1fr}
-    }
-
-    .card{
-      background: rgba(15,27,51,.55);
-      border:1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding:16px;
-      min-height:140px;
-      position:relative;
-      overflow:hidden;
-      transition:.2s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(232,238,252,.22);
-      background: rgba(15,27,51,.68);
-    }
-    .card .icon{
-      width:38px; height:38px;
-      border-radius:14px;
-      border:1px solid rgba(232,238,252,.14);
-      background: rgba(124,92,255,.10);
-      display:flex; align-items:center; justify-content:center;
-      color: rgba(232,238,252,.95);
-      margin-bottom:10px;
-    }
-    .card h3{
-      margin:0 0 6px;
-      font-size:15px;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:13.5px;
-    }
-
-    /* Footer */
-    footer{
-      margin-top:34px;
-      padding:24px 0 0;
-      border-top:1px solid rgba(232,238,252,.08);
-      color:var(--muted);
-      font-size:13px;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .footer-links{display:flex; gap:12px; flex-wrap:wrap}
-    .footer-links a{
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition:.2s ease;
-    }
-    .footer-links a:hover{
-      border-color:rgba(232,238,252,.14);
-      background: rgba(255,255,255,.03);
-      color:var(--text);
-    }
-
-    /* Smooth scroll */
-    html{scroll-behavior:smooth}
-    /* Optional reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
-    }
-  </style>
+        @media(max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="head-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>Гитары</div>
-      </div>
-      <nav aria-label="Навигация">
-        <a href="#catalog">Каталог</a>
-        <a href="#types">Типы</a>
-        <a href="#faq">Подбор</a>
-        <a href="#contacts">Контакты</a>
-      </nav>
+
+<header>
+    <h1>Мир гитар</h1>
+</header>
+
+<nav>
+    <a href="#about">О гитаре</a>
+    <a href="#types">Виды гитар</a>
+    <a href="#care">Уход и советы</a>
+    <a href="#contacts">Контакты</a>
+</nav>
+
+<section id="about">
+    <h2>О гитаре</h2>
+    <div class="card">
+        <p>Гитара — это популярный музыкальный инструмент, широко используемый в различных жанрах музыки. Она существует в нескольких видах, включая акустические, электрические и классические модели. Гитара позволяет создавать богатую гармонию и ритм, делая музыку выразительной и эмоциональной.</p>
     </div>
-  </header>
+</section>
 
-  <main class="wrap">
-    <div class="hero">
-      <div class="hero-card">
-        <div class="kicker"><span class="dot"></span> Минимализм • только нужное</div>
-        <h1>Гитары — найдите свой звук</h1>
-        <p class="lead">
-          Лаконичный каталог: акустика, электро и классика.
-          Выберите стиль игры — мы подскажем, что подойдет лучше.
-        </p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#catalog">Перейти к каталогу</a>
-          <a class="btn" href="#faq">Помочь с выбором</a>
-        </div>
-      </div>
-
-      <div class="hero-side" aria-label="Короткие преимущества">
-        <div class="stat">
-          <div class="top">
-            <h3>Подбор по задаче</h3>
-            <span class="badge">3 шага</span>
-          </div>
-          <p class="value">Быстро</p>
-          <p class="hint">Напишите стиль — соберем подходящие варианты.</p>
-        </div>
-        <div class="stat">
-          <div class="top">
-            <h3>Понятно по сути</h3>
-            <span class="badge">Без лишнего</span>
-          </div>
-          <p class="value">Мини</p>
-          <p class="hint">Короткие карточки, акцент на характеристиках.</p>
-        </div>
-      </div>
+<section id="types">
+    <h2>Виды гитар</h2>
+    <div class="card">
+        <h3>Акустическая гитара</h3>
+        <p>Идеальна для исполнения вживую и не требует дополнительного оборудования. Обладает теплым и насыщенным звуком.</p>
     </div>
+    <div class="card">
+        <h3>Электрогитара</h3>
+        <p>Используется в роке, джазе и других жанрах. Требует подключения к усилителю.</p>
+    </div>
+    <div class="card">
+        <h3>Классическая гитара</h3>
+        <p>Обладает нейлоновыми струнами и мягким звуком. Часто используется для обучения и классической музыки.</p>
+    </div>
+</section>
 
-    <section id="catalog">
-      <div class="section-title">
-        <h2>Каталог</h2>
-        <p>3 направления: выберите то, что ближе.</p>
-      </div>
+<section id="care">
+    <h2>Уход и советы</h2>
+    <div class="card">
+        <p>Чтобы гитара служила долго и звучала хорошо, важно регулярно её очищать, хранить в подходящем месте и менять струны по мере необходимости. Обратите внимание на влажность и температуру в помещении.</p>
+    </div>
+</section>
 
-      <div class="grid">
-        <article class="card">
-          <div class="icon" aria-hidden="true">🎸</div>
-          <h3>Акустические</h3>
-          <p>Для живого звучания и тренировок без сложной настройки.</p>
-        </article>
+<section id="contacts">
+    <h2>Контакты</h2>
+    <div class="card">
+        <p>Если у вас есть вопросы или хотите заказать уроки игры на гитаре — напишите нам:</p>
+        <p>Email: info@musicworld.com</p>
+        <p>Телефон: +7 900 123-45-67</p>
+    </div>
+</section>
 
-        <article class="card">
-          <div class="icon" aria-hidden="true">⚡</div>
-          <h3>Электрогитары</h3>
-          <p>Для рока, металла и экспериментов с эффектами.</p>
-        </article>
+<footer>
+    <p>&copy; 2024 Мир гитар. Все права защищены.</p>
+</footer>
 
-        <article class="card">
-          <div class="icon" aria-hidden="true">🎼</div>
-          <h3>Классические</h3>
-          <p>Мягкий строй и комфорт для обучения и пальцевой техники.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="types">
-      <div class="section-title">
-        <h2>Типы и отличия</h2>
-        <p>Суть в двух строках.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="icon" aria-hidden="true">🪵</div>
-          <h3>Акустика</h3>
-          <p>Корпус усиливает звук: идеальна для двора, кухни и репетиций.</p>
-        </article>
-        <article class="card">
-          <div class="icon" aria-hidden="true">🎚️</div>
-          <h3>Электро</h3>
-          <p>Питание/усилитель + звук берут подключение и звукосниматели.</p>
-        </article>
-        <article class="card">
-          <div class="icon" aria-hidden="true">🧠</div>
-          <h3>Классика</h3>
-          <p>Нейлоновые струны и техника для основы: арпеджио и мелодии.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="section-title">
-        <h2>Подбор гитары</h2>
-        <p>Ответьте себе на вопросы.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="icon" aria-hidden="true">1</div>
-          <h3>Вы для дома или сцены?</h3>
-          <p>Дома чаще выбирают акустику/классику; сцена — электрогитары.</p>
-        </article>
-        <article class="card">
-          <div class="icon" aria-hidden="true">2</div>
-          <h3>Какая музыка ближе?</h3>
-          <p>Рок/метал — электро. Пальцы/классика — классическая.</p>
-        </article>
-        <article class="card">
-          <div class="icon" aria-hidden="true">3</div>
-          <h3>Уровень и комфорт?</h3>
-          <p>Если учитесь — начните с удобного набора и понятной посадки.</p>
-        </article>
-      </div>
-
-      <div class="actions" style="margin-top:16px">
-        <a class="btn btn-primary" href="#contacts">Написать нам</a>
-        <a class="btn" href="#catalog">Смотреть варианты</a>
-      </div>
-    </section>
-
-    <footer id="contacts">
-      <div>
-        <strong style="color:var(--text);">Гитары</strong><br/>
-        Минимальный сайт для вдохновения и выбора.
-      </div>
-      <div class="footer-links" aria-label="Ссылки">
-        <a href="#catalog">Каталог</a>
-        <a href="#types">Типы</a>
-        <a href="#faq">Подбор</a>
-      </div>
-    </footer>
-  </main>
 </body>
 </html>
